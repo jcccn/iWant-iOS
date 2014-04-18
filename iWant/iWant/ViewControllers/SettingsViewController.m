@@ -9,10 +9,15 @@
 #import <RETableViewManager/RETableViewManager.h>
 
 #import "SettingsViewController.h"
+#import "RegisterViewController.h"
+#import "LoginViewController.h"
 
 @interface SettingsViewController ()
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) RETableViewManager *tableViewManager;
+
+- (RETableViewSection *)addTableViewItems;
 
 @end
 
@@ -32,12 +37,46 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"设置";
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.tableViewManager = [[RETableViewManager alloc] initWithTableView:self.tableView];
+    [self.tableViewManager addSection:[self addTableViewItems]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (RETableViewSection *)addTableViewItems {
+    WeakSelf
+    
+    RETableViewSection *section = [RETableViewSection section];
+    
+    //登录
+    RETableViewItem *tableViewItem;
+    tableViewItem = [RETableViewItem itemWithTitle:@"登录"
+                                     accessoryType:UITableViewCellAccessoryDisclosureIndicator
+                                  selectionHandler:^(RETableViewItem *item) {
+                                      [item deselectRowAnimated:YES];
+                                      LoginViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+                                      [weakSelf.navigationController pushViewController:viewController animated:YES];
+                                  }];
+    [section addItem:tableViewItem];
+    
+    //注册
+    tableViewItem = [RETableViewItem itemWithTitle:@"注册"
+                                     accessoryType:UITableViewCellAccessoryDisclosureIndicator
+                                  selectionHandler:^(RETableViewItem *item) {
+                                      [item deselectRowAnimated:YES];
+                                      RegisterViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
+                                      [weakSelf.navigationController pushViewController:viewController animated:YES];
+                                  }];
+    [section addItem:tableViewItem];
+    
+    return section;
 }
 
 /*
