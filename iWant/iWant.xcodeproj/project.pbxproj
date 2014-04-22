@@ -43,6 +43,11 @@
 		90CCF222190699F300D6064A /* UpdateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF221190699F300D6064A /* UpdateProfileViewController.m */; };
 		90CCF2251906A3AE00D6064A /* UpdatePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF2241906A3AE00D6064A /* UpdatePasswordViewController.m */; };
 		90CCF2281906A7E700D6064A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF2271906A7E700D6064A /* ProfileViewController.m */; };
+		90CCF22B1906AE6900D6064A /* PostNeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF22A1906AE6900D6064A /* PostNeedsViewController.m */; };
+		90CCF22E1906AF9400D6064A /* NeedsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF22D1906AF9400D6064A /* NeedsDetailViewController.m */; };
+		90CCF2371906B51A00D6064A /* NeedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF2351906B51A00D6064A /* NeedsCell.m */; };
+		90CCF2381906B51A00D6064A /* NeedsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CCF2361906B51A00D6064A /* NeedsCell.xib */; };
+		90CCF23B1906B72400D6064A /* MONeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF23A1906B72400D6064A /* MONeeds.m */; };
 		90E188C11901869E00C900DF /* MOBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188C01901869E00C900DF /* MOBase.m */; };
 		90E188C4190186D600C900DF /* MOLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188C3190186D600C900DF /* MOLogin.m */; };
 		90E188CA1901878000C900DF /* ApiKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188C91901878000C900DF /* ApiKit.m */; };
@@ -113,6 +118,15 @@
 		90CCF2241906A3AE00D6064A /* UpdatePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePasswordViewController.m; sourceTree = "<group>"; };
 		90CCF2261906A7E700D6064A /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		90CCF2271906A7E700D6064A /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		90CCF2291906AE6900D6064A /* PostNeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostNeedsViewController.h; sourceTree = "<group>"; };
+		90CCF22A1906AE6900D6064A /* PostNeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostNeedsViewController.m; sourceTree = "<group>"; };
+		90CCF22C1906AF9400D6064A /* NeedsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedsDetailViewController.h; sourceTree = "<group>"; };
+		90CCF22D1906AF9400D6064A /* NeedsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeedsDetailViewController.m; sourceTree = "<group>"; };
+		90CCF2341906B51A00D6064A /* NeedsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedsCell.h; sourceTree = "<group>"; };
+		90CCF2351906B51A00D6064A /* NeedsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeedsCell.m; sourceTree = "<group>"; };
+		90CCF2361906B51A00D6064A /* NeedsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NeedsCell.xib; sourceTree = "<group>"; };
+		90CCF2391906B72400D6064A /* MONeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MONeeds.h; sourceTree = "<group>"; };
+		90CCF23A1906B72400D6064A /* MONeeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MONeeds.m; sourceTree = "<group>"; };
 		90E188BF1901869E00C900DF /* MOBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBase.h; sourceTree = "<group>"; };
 		90E188C01901869E00C900DF /* MOBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBase.m; sourceTree = "<group>"; };
 		90E188C2190186D600C900DF /* MOLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOLogin.h; sourceTree = "<group>"; };
@@ -286,8 +300,22 @@
 				90CCF221190699F300D6064A /* UpdateProfileViewController.m */,
 				90CCF2231906A3AE00D6064A /* UpdatePasswordViewController.h */,
 				90CCF2241906A3AE00D6064A /* UpdatePasswordViewController.m */,
+				90CCF2291906AE6900D6064A /* PostNeedsViewController.h */,
+				90CCF22A1906AE6900D6064A /* PostNeedsViewController.m */,
+				90CCF22C1906AF9400D6064A /* NeedsDetailViewController.h */,
+				90CCF22D1906AF9400D6064A /* NeedsDetailViewController.m */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		90CCF2331906B50600D6064A /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				90CCF2341906B51A00D6064A /* NeedsCell.h */,
+				90CCF2351906B51A00D6064A /* NeedsCell.m */,
+				90CCF2361906B51A00D6064A /* NeedsCell.xib */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		90E188BB1901867900C900DF /* External */ = {
@@ -306,6 +334,8 @@
 				90E188C3190186D600C900DF /* MOLogin.m */,
 				90E188CE19018CD700C900DF /* MOUserInfo.h */,
 				90E188CF19018CD700C900DF /* MOUserInfo.m */,
+				90CCF2391906B72400D6064A /* MONeeds.h */,
+				90CCF23A1906B72400D6064A /* MONeeds.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -322,6 +352,7 @@
 		90E188BE1901867900C900DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				90CCF2331906B50600D6064A /* TableViewCells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -429,6 +460,7 @@
 				904DBBF618FEB5EB00A523DA /* Icon-76.png in Resources */,
 				904DBBFA18FEB5EB00A523DA /* Icon-Small.png in Resources */,
 				904DBBFF18FEB5EB00A523DA /* Icon@2x.png in Resources */,
+				90CCF2381906B51A00D6064A /* NeedsCell.xib in Resources */,
 				904DBBB518FEAFF900A523DA /* Main.storyboard in Resources */,
 				904DBBFE18FEB5EB00A523DA /* Icon.png in Resources */,
 				904DBBFD18FEB5EB00A523DA /* Icon-Spotlight-40@2x.png in Resources */,
@@ -495,10 +527,14 @@
 				90E188C4190186D600C900DF /* MOLogin.m in Sources */,
 				90E188D019018CD700C900DF /* MOUserInfo.m in Sources */,
 				90CCF2281906A7E700D6064A /* ProfileViewController.m in Sources */,
+				90CCF22E1906AF9400D6064A /* NeedsDetailViewController.m in Sources */,
 				90CCF2251906A3AE00D6064A /* UpdatePasswordViewController.m in Sources */,
 				90CCF222190699F300D6064A /* UpdateProfileViewController.m in Sources */,
 				904DBBB218FEAFF900A523DA /* AppDelegate.m in Sources */,
+				90CCF23B1906B72400D6064A /* MONeeds.m in Sources */,
+				90CCF22B1906AE6900D6064A /* PostNeedsViewController.m in Sources */,
 				90E188CA1901878000C900DF /* ApiKit.m in Sources */,
+				90CCF2371906B51A00D6064A /* NeedsCell.m in Sources */,
 				904DBC0518FEB6B200A523DA /* NearByNeedsViewController.m in Sources */,
 				904DBC0B18FEB6DD00A523DA /* SettingsViewController.m in Sources */,
 				90E188D619018F7000C900DF /* LoginViewController.m in Sources */,

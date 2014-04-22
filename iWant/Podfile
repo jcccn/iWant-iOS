@@ -16,7 +16,11 @@ pod 'Appirater'
 
 pod 'RETableViewManager'
 
+pod 'TPKeyboardAvoiding'
+
 pod 'SVPullToRefresh'
+
+pod 'GCPlaceholderTextView'
 
 pod 'UMAnalytics', :git => 'https://github.com/jcccn/UMeng-Analytics-iOS.git'
 
