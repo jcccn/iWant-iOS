@@ -16,6 +16,8 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#import "ApiKit.h"
+
 @interface BaseViewController : UIViewController
 
 @end

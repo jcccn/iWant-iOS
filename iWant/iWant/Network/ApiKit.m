@@ -16,10 +16,20 @@
 }
 
 @property (nonatomic, strong) RKObjectManager *objectManager;
+@property (nonatomic, strong) NSString *token;
 
 + (instancetype)sharedInstance;
 
 + (RKObjectManager *)objectManager;
+
+/**
+ *  预处理请求参数
+ *
+ *  @param param 原参数的字典
+ *
+ *  @return 处理后的参数字典
+ */
++ (NSDictionary *)processParam:(NSDictionary *)param;
 
 /**
  *	API请求
@@ -45,6 +55,10 @@
 
 
 @implementation ApiKit
+
++ (void)setToken:(NSString *)token {
+    [ApiKit sharedInstance].token = [token copy];
+}
 
 + (RKObjectMapping *)mappingWithDataMapping:(RKMapping *)dataMapping {
     RKObjectMapping *rootMapping = [RKObjectMapping mappingForClass:[MORoot class]];
@@ -112,6 +126,15 @@
     return [ApiKit sharedInstance].objectManager;
 }
 
++ (NSDictionary *)processParam:(NSDictionary *)param {
+    NSMutableDictionary *processedParam = [param mutableCopy];
+    NSString *token = [[self sharedInstance] token];
+    if ([token length]) {
+        processedParam[@"token"] = token;
+    }
+    return processedParam;
+}
+
 + (void)requestObjectsAtPath:(NSString *)path
                       method:(RKRequestMethod)method
                  rootMapping:(RKMapping *)rootMapping
@@ -125,7 +148,7 @@
     RKObjectManager *objectManager = [self objectManager];
     [objectManager addResponseDescriptor:responseDescriptor];
     
-    NSDictionary *processedParam = parameters;  //if need preprocess
+    NSDictionary *processedParam = [self processParam:parameters];
     
     if (method == RKRequestMethodPOST) {
         [objectManager postObject:object ? object : @""

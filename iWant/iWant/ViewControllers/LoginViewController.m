@@ -114,6 +114,9 @@
                           ok:^(id data, NSString *msg) {
                               [SVProgressHUD showSuccessWithStatus:@"登录成功"];
                               //TODO:保存登录结果
+                              if ([data isKindOfClass:[MOLogin class]]) {
+                                  [ApiKit setToken:((MOLogin *)data).token];
+                              }
                           }
                        error:^(id data, NSInteger errorCode, NSString *errorMsg) {
                            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"登录失败\n%@", errorMsg]];

@@ -40,6 +40,9 @@
 		904DBC0518FEB6B200A523DA /* NearByNeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 904DBC0418FEB6B200A523DA /* NearByNeedsViewController.m */; };
 		904DBC0818FEB6D000A523DA /* MyNeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 904DBC0718FEB6D000A523DA /* MyNeedsViewController.m */; };
 		904DBC0B18FEB6DD00A523DA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 904DBC0A18FEB6DD00A523DA /* SettingsViewController.m */; };
+		90CCF222190699F300D6064A /* UpdateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF221190699F300D6064A /* UpdateProfileViewController.m */; };
+		90CCF2251906A3AE00D6064A /* UpdatePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF2241906A3AE00D6064A /* UpdatePasswordViewController.m */; };
+		90CCF2281906A7E700D6064A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF2271906A7E700D6064A /* ProfileViewController.m */; };
 		90E188C11901869E00C900DF /* MOBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188C01901869E00C900DF /* MOBase.m */; };
 		90E188C4190186D600C900DF /* MOLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188C3190186D600C900DF /* MOLogin.m */; };
 		90E188CA1901878000C900DF /* ApiKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188C91901878000C900DF /* ApiKit.m */; };
@@ -104,6 +107,12 @@
 		904DBC0718FEB6D000A523DA /* MyNeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNeedsViewController.m; sourceTree = "<group>"; };
 		904DBC0918FEB6DD00A523DA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		904DBC0A18FEB6DD00A523DA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		90CCF220190699F300D6064A /* UpdateProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateProfileViewController.h; sourceTree = "<group>"; };
+		90CCF221190699F300D6064A /* UpdateProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateProfileViewController.m; sourceTree = "<group>"; };
+		90CCF2231906A3AE00D6064A /* UpdatePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePasswordViewController.h; sourceTree = "<group>"; };
+		90CCF2241906A3AE00D6064A /* UpdatePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePasswordViewController.m; sourceTree = "<group>"; };
+		90CCF2261906A7E700D6064A /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		90CCF2271906A7E700D6064A /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		90E188BF1901869E00C900DF /* MOBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBase.h; sourceTree = "<group>"; };
 		90E188C01901869E00C900DF /* MOBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBase.m; sourceTree = "<group>"; };
 		90E188C2190186D600C900DF /* MOLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOLogin.h; sourceTree = "<group>"; };
@@ -271,6 +280,12 @@
 				90E188D219018F6400C900DF /* RegisterViewController.m */,
 				90E188D419018F7000C900DF /* LoginViewController.h */,
 				90E188D519018F7000C900DF /* LoginViewController.m */,
+				90CCF2261906A7E700D6064A /* ProfileViewController.h */,
+				90CCF2271906A7E700D6064A /* ProfileViewController.m */,
+				90CCF220190699F300D6064A /* UpdateProfileViewController.h */,
+				90CCF221190699F300D6064A /* UpdateProfileViewController.m */,
+				90CCF2231906A3AE00D6064A /* UpdatePasswordViewController.h */,
+				90CCF2241906A3AE00D6064A /* UpdatePasswordViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -479,6 +494,9 @@
 				904DBC0818FEB6D000A523DA /* MyNeedsViewController.m in Sources */,
 				90E188C4190186D600C900DF /* MOLogin.m in Sources */,
 				90E188D019018CD700C900DF /* MOUserInfo.m in Sources */,
+				90CCF2281906A7E700D6064A /* ProfileViewController.m in Sources */,
+				90CCF2251906A3AE00D6064A /* UpdatePasswordViewController.m in Sources */,
+				90CCF222190699F300D6064A /* UpdateProfileViewController.m in Sources */,
 				904DBBB218FEAFF900A523DA /* AppDelegate.m in Sources */,
 				90E188CA1901878000C900DF /* ApiKit.m in Sources */,
 				904DBC0518FEB6B200A523DA /* NearByNeedsViewController.m in Sources */,

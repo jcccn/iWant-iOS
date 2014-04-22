@@ -17,6 +17,13 @@ typedef void (^ResultErrorCallback)(id data, NSInteger errorCode, NSString *erro
 @interface ApiKit : NSObject
 
 /**
+ *  设置API访问自动带上的token
+ *
+ *  @param token token串
+ */
++ (void)setToken:(NSString *)token;
+
+/**
  *	生成根映射表
  *
  *	@param	dataMapping	data的映射表

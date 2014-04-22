@@ -11,6 +11,9 @@
 #import "SettingsViewController.h"
 #import "RegisterViewController.h"
 #import "LoginViewController.h"
+#import "ProfileViewController.h"
+#import "UpdateProfileViewController.h"
+#import "UpdatePasswordViewController.h"
 
 @interface SettingsViewController ()
 
@@ -72,6 +75,37 @@
                                   selectionHandler:^(RETableViewItem *item) {
                                       [item deselectRowAnimated:YES];
                                       RegisterViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
+                                      [weakSelf.navigationController pushViewController:viewController animated:YES];
+                                  }];
+    [section addItem:tableViewItem];
+    
+    //个人资料
+    tableViewItem = [RETableViewItem itemWithTitle:@"个人资料"
+                                     accessoryType:UITableViewCellAccessoryDisclosureIndicator
+                                  selectionHandler:^(RETableViewItem *item) {
+                                      [item deselectRowAnimated:YES];
+                                      ProfileViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
+                                      viewController.userId = @"5351630f0cf278c7ac3728ce";
+                                      [weakSelf.navigationController pushViewController:viewController animated:YES];
+                                  }];
+    [section addItem:tableViewItem];
+    
+    //修改资料
+    tableViewItem = [RETableViewItem itemWithTitle:@"修改资料"
+                                     accessoryType:UITableViewCellAccessoryDisclosureIndicator
+                                  selectionHandler:^(RETableViewItem *item) {
+                                      [item deselectRowAnimated:YES];
+                                      UpdateProfileViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"UpdateProfileViewController"];
+                                      [weakSelf.navigationController pushViewController:viewController animated:YES];
+                                  }];
+    [section addItem:tableViewItem];
+    
+    //修改密码
+    tableViewItem = [RETableViewItem itemWithTitle:@"修改密码"
+                                     accessoryType:UITableViewCellAccessoryDisclosureIndicator
+                                  selectionHandler:^(RETableViewItem *item) {
+                                      [item deselectRowAnimated:YES];
+                                      UpdatePasswordViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"UpdatePasswordViewController"];
                                       [weakSelf.navigationController pushViewController:viewController animated:YES];
                                   }];
     [section addItem:tableViewItem];
