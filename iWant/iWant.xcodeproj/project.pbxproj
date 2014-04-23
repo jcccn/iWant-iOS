@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		902C167F190824DC0035A83B /* LBSManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 902C167E190824DC0035A83B /* LBSManager.mm */; };
 		904DBBA218FEAFF800A523DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904DBBA118FEAFF800A523DA /* Foundation.framework */; };
 		904DBBA418FEAFF900A523DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904DBBA318FEAFF900A523DA /* CoreGraphics.framework */; };
 		904DBBA618FEAFF900A523DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904DBBA518FEAFF900A523DA /* UIKit.framework */; };
@@ -71,6 +72,8 @@
 /* Begin PBXFileReference section */
 		457860DC5B0F4647ACB41601 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		85B82DE3960D46C296884F0E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		902C167D190824DC0035A83B /* LBSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSManager.h; sourceTree = "<group>"; };
+		902C167E190824DC0035A83B /* LBSManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LBSManager.mm; sourceTree = "<group>"; };
 		904DBB9E18FEAFF800A523DA /* iWant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		904DBBA118FEAFF800A523DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		904DBBA318FEAFF900A523DA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -327,6 +330,8 @@
 			children = (
 				90CCF23E1907FCAC00D6064A /* Login.h */,
 				90CCF23F1907FCAC00D6064A /* Login.m */,
+				902C167D190824DC0035A83B /* LBSManager.h */,
+				902C167E190824DC0035A83B /* LBSManager.mm */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -434,6 +439,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = SenseForce;
 				TargetAttributes = {
+					904DBB9D18FEAFF800A523DA = {
+						DevelopmentTeam = DW6YCKY3X4;
+					};
 					904DBBC118FEAFF900A523DA = {
 						TestTargetID = 904DBB9D18FEAFF800A523DA;
 					};
@@ -551,6 +559,7 @@
 				904DBC0518FEB6B200A523DA /* NearByNeedsViewController.m in Sources */,
 				904DBC0B18FEB6DD00A523DA /* SettingsViewController.m in Sources */,
 				90CCF2401907FCAC00D6064A /* Login.m in Sources */,
+				902C167F190824DC0035A83B /* LBSManager.mm in Sources */,
 				90E188D619018F7000C900DF /* LoginViewController.m in Sources */,
 				904DBC0218FEB66C00A523DA /* BaseViewController.m in Sources */,
 				90E188C11901869E00C900DF /* MOBase.m in Sources */,
@@ -680,11 +689,13 @@
 			baseConfigurationReference = 85B82DE3960D46C296884F0E /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iWant/iWant-Prefix.pch";
 				INFOPLIST_FILE = "iWant/iWant-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -700,6 +711,7 @@
 				INFOPLIST_FILE = "iWant/iWant-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

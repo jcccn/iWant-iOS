@@ -9,12 +9,15 @@
 #import <GCPlaceholderTextView/GCPlaceholderTextView.h>
 
 #import "PostNeedsViewController.h"
+#import "LBSManager.h"
 
 @interface PostNeedsViewController ()
 
 @property (nonatomic, weak) IBOutlet UITextField *titleTextField;   //需求标题
 @property (nonatomic, weak) IBOutlet UITextField *dateTextField;    //需求有效期
 @property (nonatomic, weak) IBOutlet GCPlaceholderTextView *contentTextView;    //需求内容
+
+- (void)postTheNeeds;
 
 @end
 
@@ -48,15 +51,50 @@
     item = [[UIBarButtonItem alloc] bk_initWithTitle:@"提交"
                                                style:UIBarButtonItemStylePlain
                                              handler:^(id sender) {
-                                                 //TODO:调用需求发布接口
+                                                 [weakSelf postTheNeeds];
                                              }];
     self.navigationItem.rightBarButtonItem = item;
+    
+    [[LBSManager sharedInstance] updateLocation];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)postTheNeeds {
+    WeakSelf
+    
+    NSString *title = self.titleTextField.text;
+    NSString *date = self.dateTextField.text;
+    NSString *content = self.contentTextView.text;
+    
+    if ( ! [title length]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入需求的标题"];
+        return;
+    }
+    if ( ! [content length]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入需求的详细内容"];
+        return;
+    }
+    
+    [SVProgressHUD showWithStatus:@"正在发布您的需求"];
+    
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:title, @"title", content, @"content", @(3600 * 24 * 7), @"todate", @([LBSManager sharedInstance].latitude), @"latitude", @([LBSManager sharedInstance].longitude), @"longtitude", nil];
+    
+    [ApiKit postObjectsAtPath:APIPathPostNeeds
+                  dataMapping:nil
+                   parameters:param
+                       object:nil
+                           ok:^(id data, NSString *msg) {
+                               [SVProgressHUD showSuccessWithStatus:@"需求发布成功"];
+                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                           }
+                        error:^(id data, NSInteger errorCode, NSString *errorMsg) {
+                            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"需求发表失败\n%@", errorMsg]];
+                        }];
 }
 
 /*

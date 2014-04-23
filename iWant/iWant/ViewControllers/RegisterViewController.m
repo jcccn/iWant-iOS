@@ -130,7 +130,7 @@
                               //TODO:注册成功后立即登录
                           }
                        error:^(id data, NSInteger errorCode, NSString *errorMsg) {
-                           [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"注册失败\n%@", errorMsg]];
+                           [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"注册失败\n%@", errorMsg]];
                        }];
 }
 

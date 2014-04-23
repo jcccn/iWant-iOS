@@ -13,12 +13,15 @@
 #import "NeedsDetailViewController.h"
 #import "NeedsCell.h"
 #import "MONeeds.h"
+#import "LBSManager.h"
 
-@interface NearByNeedsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface NearByNeedsViewController () <UITableViewDataSource, UITableViewDelegate, LBSDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *nearbyNeeds;
+
+- (void)searchNearbyNeeds;
 
 @end
 
@@ -65,12 +68,41 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    [[LBSManager sharedInstance] registerLbsObserver:self];
+}
+
+- (void)dealloc {
+    [[LBSManager sharedInstance] unregisterbsObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)searchNearbyNeeds {
+    WeakSelf
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@([LBSManager sharedInstance].latitude), @"latitude", @([LBSManager sharedInstance].longitude), @"longtitude", @(0), @"start", @(10), @"count", nil];
+    [ApiKit getObjectsAtPath:APIPathFindNeeds
+                 dataMapping:[MONeeds commonMapping]
+                  parameters:param
+                          ok:^(id data, NSString *msg) {
+                              if ([data isKindOfClass:[NSArray class]]) {
+                                  //FIXME:数据为空，所以返回数据为0时不刷新
+                                  if ( ! [data count]) {
+                                      return ;
+                                  }
+                                  [weakSelf.nearbyNeeds removeAllObjects];
+                                  [weakSelf.nearbyNeeds addObjectsFromArray:data];
+                                  
+                                  [weakSelf.tableView reloadData];
+                              }
+                          }
+                       error:^(id data, NSInteger errorCode, NSString *errorMsg) {
+                           
+                       }];
 }
 
 #pragma mark - UITableView DataSource & Delegate
@@ -113,6 +145,16 @@
     NeedsDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NeedsDetailViewController"];
     viewController.needs = needs;
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+#pragma mark - LBSDelegate
+
+- (void)lbsSucceed {
+    [self searchNearbyNeeds];
+}
+
+- (void)lbsFailedWithError:(NSError *)theError {
+    
 }
 
 /*
