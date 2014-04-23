@@ -10,9 +10,9 @@
 
 #import "LoginViewController.h"
 #import "ApiKit.h"
-#import "MOLogin.h"
+#import "Login.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <LoginObserver>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) RETableViewManager *tableViewManager;
@@ -107,20 +107,22 @@
     
     [SVProgressHUD showWithStatus:@"正在登录"];
     //调用登录接口
-    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:username, @"userid", password, @"password", nil];
-    [ApiKit getObjectsAtPath:APIPathLogin
-                 dataMapping:[MOLogin commonMapping]
-                  parameters:param
-                          ok:^(id data, NSString *msg) {
-                              [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-                              //TODO:保存登录结果
-                              if ([data isKindOfClass:[MOLogin class]]) {
-                                  [ApiKit setToken:((MOLogin *)data).token];
-                              }
-                          }
-                       error:^(id data, NSInteger errorCode, NSString *errorMsg) {
-                           [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"登录失败\n%@", errorMsg]];
-                       }];
+    [[Login sharedInstance] loginWithAccountName:username password:password andObserver:self];
+}
+
+#pragma mark - Login Observer
+
+- (void)loginSucceeded {
+    [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)loginFailedWithErrorCode:(NSInteger)errCode errorMessage:(NSString *)errMsg {
+    [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"登录失败\n%@", errMsg]];
+}
+
+- (void)loggedOut {
+    
 }
 
 /*

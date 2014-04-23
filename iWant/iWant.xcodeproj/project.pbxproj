@@ -48,6 +48,7 @@
 		90CCF2371906B51A00D6064A /* NeedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF2351906B51A00D6064A /* NeedsCell.m */; };
 		90CCF2381906B51A00D6064A /* NeedsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CCF2361906B51A00D6064A /* NeedsCell.xib */; };
 		90CCF23B1906B72400D6064A /* MONeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF23A1906B72400D6064A /* MONeeds.m */; };
+		90CCF2401907FCAC00D6064A /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF23F1907FCAC00D6064A /* Login.m */; };
 		90E188C11901869E00C900DF /* MOBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188C01901869E00C900DF /* MOBase.m */; };
 		90E188C4190186D600C900DF /* MOLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188C3190186D600C900DF /* MOLogin.m */; };
 		90E188CA1901878000C900DF /* ApiKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188C91901878000C900DF /* ApiKit.m */; };
@@ -127,6 +128,8 @@
 		90CCF2361906B51A00D6064A /* NeedsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NeedsCell.xib; sourceTree = "<group>"; };
 		90CCF2391906B72400D6064A /* MONeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MONeeds.h; sourceTree = "<group>"; };
 		90CCF23A1906B72400D6064A /* MONeeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MONeeds.m; sourceTree = "<group>"; };
+		90CCF23E1907FCAC00D6064A /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
+		90CCF23F1907FCAC00D6064A /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		90E188BF1901869E00C900DF /* MOBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOBase.h; sourceTree = "<group>"; };
 		90E188C01901869E00C900DF /* MOBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOBase.m; sourceTree = "<group>"; };
 		90E188C2190186D600C900DF /* MOLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOLogin.h; sourceTree = "<group>"; };
@@ -207,6 +210,7 @@
 				90E188BC1901867900C900DF /* Models */,
 				90E188BE1901867900C900DF /* Views */,
 				904DBBEE18FEB5EB00A523DA /* ViewControllers */,
+				90CCF23D1907FC9E00D6064A /* Controllers */,
 				90E188BD1901867900C900DF /* Network */,
 				90E188CC190187FD00C900DF /* Constants */,
 				90E188CB190187EA00C900DF /* Utilities */,
@@ -316,6 +320,15 @@
 				90CCF2361906B51A00D6064A /* NeedsCell.xib */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		90CCF23D1907FC9E00D6064A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				90CCF23E1907FCAC00D6064A /* Login.h */,
+				90CCF23F1907FCAC00D6064A /* Login.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		90E188BB1901867900C900DF /* External */ = {
@@ -537,6 +550,7 @@
 				90CCF2371906B51A00D6064A /* NeedsCell.m in Sources */,
 				904DBC0518FEB6B200A523DA /* NearByNeedsViewController.m in Sources */,
 				904DBC0B18FEB6DD00A523DA /* SettingsViewController.m in Sources */,
+				90CCF2401907FCAC00D6064A /* Login.m in Sources */,
 				90E188D619018F7000C900DF /* LoginViewController.m in Sources */,
 				904DBC0218FEB66C00A523DA /* BaseViewController.m in Sources */,
 				90E188C11901869E00C900DF /* MOBase.m in Sources */,
@@ -665,6 +679,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85B82DE3960D46C296884F0E /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iWant/iWant-Prefix.pch";
 				INFOPLIST_FILE = "iWant/iWant-Info.plist";
@@ -678,6 +693,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85B82DE3960D46C296884F0E /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iWant/iWant-Prefix.pch";
 				INFOPLIST_FILE = "iWant/iWant-Info.plist";

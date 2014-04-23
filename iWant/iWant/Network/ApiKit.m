@@ -7,6 +7,7 @@
 //
 
 #import "ApiKit.h"
+#import "Login.h"
 
 #define kCodeSuccess        4000    //有的接口4000表示成功
 #define kCodeSuccessZero    0       //还有的接口0表示成功。WTF
@@ -115,6 +116,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self.token = [Login sharedInstance].token;
         self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:APIBaseUrl]];
         [self.objectManager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
         [self.objectManager.HTTPClient setParameterEncoding:AFJSONParameterEncoding];
