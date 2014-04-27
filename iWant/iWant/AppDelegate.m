@@ -11,8 +11,12 @@
 #import "AppDelegate.h"
 #import "MobClick.h"
 #import "LBSManager.h"
+#import "Login.h"
+#import "UpdateProfileViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <LoginObserver>
+
+@property (nonatomic, strong) UIStoryboard *mainStoryboard;
 
 - (void)configUmeng;
 - (void)configAppRating;
@@ -26,6 +30,24 @@
     
     [self configUmeng];
     [self configAppRating];
+    
+    self.mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UIViewController *rootViewController;
+    
+    [Login sharedInstance].rootLoginObserver = self;
+    if ([Login sharedInstance].isLogged) {
+        rootViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+    }
+    else {
+        UIViewController *loginViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+        rootViewController = navigationController;
+    }
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = rootViewController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -83,6 +105,33 @@
     [Appirater setDebug:NO];
     
     [Appirater appLaunched:YES];
+}
+
+#pragma mark - Login Observer
+
+- (void)loginSucceeded {
+    //判断是否首次登录需要补充资料
+    if ([Login sharedInstance].isActivated) {
+        self.window.rootViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+    }
+    else {
+        UpdateProfileViewController *updateProfileViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:@"UpdateProfileViewController"];
+        updateProfileViewController.forActivating = YES;
+        UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+        if ([navigationController isKindOfClass:[UINavigationController class]]) {
+            [navigationController pushViewController:updateProfileViewController animated:YES];
+        }
+    }
+}
+
+- (void)loginFailedWithErrorCode:(NSInteger)errCode errorMessage:(NSString *)errMsg {
+    
+}
+
+- (void)loggedOut {
+    UIViewController *loginViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    self.window.rootViewController = navigationController;
 }
 
 @end

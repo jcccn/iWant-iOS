@@ -14,9 +14,9 @@
 
 @interface MOUserInfo : MOBase
 
-@property (nonatomic, assign) NSInteger id;
+@property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) NSInteger age;
+@property (nonatomic, assign) NSInteger birthday;
 @property (nonatomic, assign) NSInteger gender;
 @property (nonatomic, assign) BOOL active;
 @property (nonatomic, strong) NSString *registerDate;

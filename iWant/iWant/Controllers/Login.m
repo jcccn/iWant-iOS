@@ -42,6 +42,8 @@
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         self.token = [defaults stringForKey:@"login_token"];
+        self.isActivated = [defaults boolForKey:@"login_active"];
+        self.userId = [defaults stringForKey:@"login_userId"];
         
         [self addKVOObservers];
     }
@@ -52,6 +54,12 @@
     WeakSelf
     [self bk_addObserverForKeyPath:@"token" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld task:^(id obj, NSDictionary *change) {
         [[NSUserDefaults standardUserDefaults] setObject:weakSelf.token forKey:@"login_token"];
+    }];
+    [self bk_addObserverForKeyPath:@"isActivated" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld task:^(id obj, NSDictionary *change) {
+        [[NSUserDefaults standardUserDefaults] setBool:weakSelf.isActivated forKey:@"login_active"];
+    }];
+    [self bk_addObserverForKeyPath:@"userId" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld task:^(id obj, NSDictionary *change) {
+        [[NSUserDefaults standardUserDefaults] setObject:weakSelf.userId forKey:@"login_userId"];
     }];
 }
 
@@ -69,6 +77,8 @@
                           ok:^(id data, NSString *msg) {
                               if ([data isKindOfClass:[MOLogin class]]) {
                                   weakSelf.token = ((MOLogin *)data).token;
+                                  weakSelf.isActivated = ((MOLogin *)data).userinfo.active;
+                                  weakSelf.userId = ((MOLogin *)data).userinfo.userId;
                               }
                               
                               [weakSelf loginSucceeded];
@@ -79,6 +89,7 @@
 }
 
 - (void)logout {
+    self.isActivated = NO;
     self.token = nil;
     [ApiKit setToken:nil];
     

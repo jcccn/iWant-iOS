@@ -29,7 +29,13 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"我的需求";
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"我发布", @"我联系"]];
+    segmentedControl.selectedSegmentIndex = 0;
+    [segmentedControl bk_addEventHandler:^(id sender) {
+        
+    }
+                        forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = segmentedControl;
 }
 
 - (void)didReceiveMemoryWarning

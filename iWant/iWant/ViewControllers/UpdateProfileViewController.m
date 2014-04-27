@@ -11,6 +11,7 @@
 
 #import "UpdateProfileViewController.h"
 #import "MOUserInfo.h"
+#import "Login.h"
 
 @interface UpdateProfileViewController ()
 
@@ -44,7 +45,7 @@
     
     self.genders = @[@"男", @"女"];
     
-    self.title = @"编辑个人资料";
+    self.title = @"修改个人资料";
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -58,25 +59,36 @@
         
         NSString *nickname = weakSelf.nicknameItem.value;
         NSDate *birthday = weakSelf.birthdayItem.value;
-        NSInteger gender = [weakSelf.genders indexOfObject:weakSelf.genderItem.value];
         
         NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:3];
         param[@"nickname"] = (nickname ? nickname :@"");
         param[@"birthday"] = @((NSInteger)[birthday timeIntervalSince1970]);
-        param[@"gender"] = @(gender);
+        if (weakSelf.genderItem) {
+            NSInteger gender = [weakSelf.genders indexOfObject:weakSelf.genderItem.value];
+            if (NSNotFound == gender) {     //默认选择女性
+                gender = 1;
+            }
+            param[@"gender"] = @(gender);
+        }
         
         //调用资料保存接口
-        [ApiKit postObjectsAtPath:APIPathUpdateUserInfo
-                      dataMapping:nil
-                       parameters:param
-                           object:nil
-                               ok:^(id data, NSString *msg) {
-                                   [SVProgressHUD showSuccessWithStatus:@"资料保存成功"];
-                                   [weakSelf.navigationController popViewControllerAnimated:YES];
-                               }
-                            error:^(id data, NSInteger errorCode, NSString *errorMsg) {
-                                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"资料保存失败 %@", errorMsg]];
-                            }];
+        [ApiKit getObjectsAtPath:APIPathUpdateUserInfo
+                     dataMapping:nil
+                      parameters:param
+                              ok:^(id data, NSString *msg) {
+                                  [SVProgressHUD showSuccessWithStatus:@"资料保存成功"];
+                                  //判断是否首次激活账号，如果是，需要保存已激活的标志，并跳转相应的页面
+                                  [Login sharedInstance].isActivated = YES;
+                                  if (weakSelf.forActivating) {
+                                      [UIApplication sharedApplication].keyWindow.rootViewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+                                  }
+                                  else {
+                                      [weakSelf.navigationController popViewControllerAnimated:YES];
+                                  }
+                              }
+                           error:^(id data, NSInteger errorCode, NSString *errorMsg) {
+                               [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"资料保存失败 %@", errorMsg]];
+                           }];
     }];
 }
 
@@ -93,13 +105,14 @@
     
     //昵称
     self.nicknameItem = [RETextItem itemWithTitle:@"昵称"
-                                            value:nil
+                                            value:self.nickname
                                       placeholder:@"请输入希望显示的名字"];
     [section addItem:self.nicknameItem];
     
     //生日
+    NSDate *birthday = (self.birthday ? [NSDate dateWithTimeIntervalSince1970:self.birthday] : [NSDate dateWithTimeIntervalSinceNow:-1 * 3600 * 24 * 365 * 20]);
     self.birthdayItem = [REDateTimeItem itemWithTitle:@"生日"
-                                                value:[NSDate dateWithTimeIntervalSinceNow:-1 * 3600 * 24 * 365 * 20]
+                                                value:birthday
                                           placeholder:@"请输入您的生日"
                                                format:@"yyyy-MM-dd"
                                        datePickerMode:UIDatePickerModeDate];
@@ -107,19 +120,21 @@
     self.birthdayItem.maximumDate = [NSDate dateWithTimeIntervalSinceNow:-1.0f * 3600 * 24 * 365 * 1];         //最小1岁
     [section addItem:self.birthdayItem];
     
-    //性别
-    self.genderItem = [RERadioItem itemWithTitle:@"性别" value:@"男" selectionHandler:^(RERadioItem *item) {
-        [item deselectRowAnimated:YES];
-        
-        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:weakSelf.genders multipleChoice:NO completionHandler:^{
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+    if (self.forActivating) {
+        //性别
+        self.genderItem = [RERadioItem itemWithTitle:@"性别" value:@"一旦确定不能修改" selectionHandler:^(RERadioItem *item) {
+            [item deselectRowAnimated:YES];
             
-            [item reloadRowWithAnimation:UITableViewRowAnimationNone];
+            RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:weakSelf.genders multipleChoice:NO completionHandler:^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+                
+                [item reloadRowWithAnimation:UITableViewRowAnimationNone];
+            }];
+            
+            [weakSelf.navigationController pushViewController:optionsController animated:YES];
         }];
-        
-        [weakSelf.navigationController pushViewController:optionsController animated:YES];
-    }];
-    [section addItem:self.genderItem];
+        [section addItem:self.genderItem];
+    }
     
     return section;
 }

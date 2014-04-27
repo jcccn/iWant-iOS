@@ -119,6 +119,7 @@
         return;
     }
     
+    WeakSelf
     [SVProgressHUD showWithStatus:@"正在注册"];
     //调用注册接口
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:username, @"userid", password, @"password", nil];
@@ -128,6 +129,7 @@
                           ok:^(id data, NSString *msg) {
                               [SVProgressHUD showSuccessWithStatus:@"注册成功"];
                               //TODO:注册成功后立即登录
+                              [weakSelf.navigationController popViewControllerAnimated:YES];
                           }
                        error:^(id data, NSInteger errorCode, NSString *errorMsg) {
                            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"注册失败\n%@", errorMsg]];

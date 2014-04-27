@@ -12,7 +12,9 @@
 #import <RETableViewManager/RETableViewOptionsController.h>
 
 #import "ProfileViewController.h"
+#import "UpdateProfileViewController.h"
 #import "MOUserInfo.h"
+#import "Login.h"
 
 @interface ProfileViewController ()
 
@@ -21,6 +23,8 @@
 @property (nonatomic, strong) RETableViewItem *nicknameItem;    //用户名
 @property (nonatomic, strong) RETableViewItem *ageItem;         //年龄
 @property (nonatomic, strong) RETableViewItem *genderItem;      //性别
+
+@property (nonatomic, strong) MOUserInfo *userInfo;
 
 - (RETableViewSection *)addTableViewItems;
 
@@ -47,8 +51,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //如果未传入用户id参数，就默认为是查看自己的资料
+    if ( ! self.userId) {
+        self.userId = [Login sharedInstance].userId;
+    }
         
     self.title = @"个人资料";
+    
+    WeakSelf
+    
+    //如果是自己的资料页，增加修改按钮
+    if ([self.userId isEqualToString:[Login sharedInstance].userId]) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] bk_initWithTitle:@"修改" style:UIBarButtonItemStylePlain handler:^(id sender) {
+            UpdateProfileViewController *updateProfileViewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"UpdateProfileViewController"];
+            updateProfileViewController.nickname = weakSelf.userInfo.name;
+            updateProfileViewController.birthday = weakSelf.userInfo.birthday;
+            UINavigationController *navigationController = weakSelf.navigationController;
+            [navigationController popViewControllerAnimated:NO];
+            [navigationController pushViewController:updateProfileViewController animated:NO];
+        }];
+        self.navigationItem.rightBarButtonItem = item;
+    }
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -124,8 +148,13 @@
         return;
     }
     
+    self.userInfo = userInfo;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"YYYY";
+    NSInteger age = [[dateFormatter stringFromDate:[NSDate date]] integerValue] - [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:userInfo.birthday]] integerValue];
     self.nicknameItem.detailLabelText = userInfo.name;
-    self.ageItem.detailLabelText = [NSString stringWithFormat:@"%d岁", userInfo.age];
+    self.ageItem.detailLabelText = [NSString stringWithFormat:@"%d岁", age];
     self.genderItem.detailLabelText = (userInfo.gender == 0 ? @"男" : @"女");
     
     [self.tableView reloadData];

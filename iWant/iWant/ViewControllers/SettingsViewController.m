@@ -22,6 +22,8 @@
 
 - (RETableViewSection *)addTableViewItems;
 
+- (void)showLogoutAlertView;
+
 @end
 
 @implementation SettingsViewController
@@ -58,25 +60,21 @@
     
     RETableViewSection *section = [RETableViewSection section];
     
-    //登录
+    //声音提醒
     RETableViewItem *tableViewItem;
-    tableViewItem = [RETableViewItem itemWithTitle:@"登录"
-                                     accessoryType:UITableViewCellAccessoryDisclosureIndicator
-                                  selectionHandler:^(RETableViewItem *item) {
-                                      [item deselectRowAnimated:YES];
-                                      LoginViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-                                      [weakSelf.navigationController pushViewController:viewController animated:YES];
-                                  }];
+    tableViewItem = [REBoolItem itemWithTitle:@"声音提醒"
+                                        value:YES
+                     switchValueChangeHandler:^(REBoolItem *item) {
+                         //TODO:切换声音开关
+                     }];
     [section addItem:tableViewItem];
     
-    //注册
-    tableViewItem = [RETableViewItem itemWithTitle:@"注册"
-                                     accessoryType:UITableViewCellAccessoryDisclosureIndicator
-                                  selectionHandler:^(RETableViewItem *item) {
-                                      [item deselectRowAnimated:YES];
-                                      RegisterViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
-                                      [weakSelf.navigationController pushViewController:viewController animated:YES];
-                                  }];
+    //震动提醒
+    tableViewItem = [REBoolItem itemWithTitle:@"震动提醒"
+                                        value:YES
+                     switchValueChangeHandler:^(REBoolItem *item) {
+                         //TODO:切换震动开关
+                     }];
     [section addItem:tableViewItem];
     
     //个人资料
@@ -85,17 +83,6 @@
                                   selectionHandler:^(RETableViewItem *item) {
                                       [item deselectRowAnimated:YES];
                                       ProfileViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
-                                      viewController.userId = @"5351630f0cf278c7ac3728ce";
-                                      [weakSelf.navigationController pushViewController:viewController animated:YES];
-                                  }];
-    [section addItem:tableViewItem];
-    
-    //修改资料
-    tableViewItem = [RETableViewItem itemWithTitle:@"修改资料"
-                                     accessoryType:UITableViewCellAccessoryDisclosureIndicator
-                                  selectionHandler:^(RETableViewItem *item) {
-                                      [item deselectRowAnimated:YES];
-                                      UpdateProfileViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"UpdateProfileViewController"];
                                       [weakSelf.navigationController pushViewController:viewController animated:YES];
                                   }];
     [section addItem:tableViewItem];
@@ -110,7 +97,28 @@
                                   }];
     [section addItem:tableViewItem];
     
+    //注销
+    tableViewItem = [RETableViewItem itemWithTitle:@"注销"
+                                     accessoryType:UITableViewCellAccessoryDisclosureIndicator
+                                  selectionHandler:^(RETableViewItem *item) {
+                                      [item deselectRowAnimated:YES];
+                                      
+                                      [weakSelf showLogoutAlertView];
+                                  }];
+    [section addItem:tableViewItem];
+    
     return section;
+}
+
+- (void)showLogoutAlertView {
+    UIAlertView *alertView = [UIAlertView bk_alertViewWithTitle:@"您确定退出当前账号？"];
+    [alertView bk_addButtonWithTitle:@"退出" handler:^{
+        [[Login sharedInstance] logout];
+    }];
+    [alertView bk_setCancelButtonWithTitle:@"取消" handler:^{
+        
+    }];
+    [alertView show];
 }
 
 /*

@@ -9,8 +9,8 @@
 #import <RETableViewManager/RETableViewManager.h>
 
 #import "LoginViewController.h"
+#import "RegisterViewController.h"
 #import "ApiKit.h"
-#import "Login.h"
 
 @interface LoginViewController () <LoginObserver>
 
@@ -18,6 +18,9 @@
 @property (nonatomic, strong) RETableViewManager *tableViewManager;
 @property (nonatomic, strong) RETextItem *usernameItem;         //用户名
 @property (nonatomic, strong) RETextItem *passwordItem;         //密码
+
+@property (nonatomic, weak) IBOutlet UIButton *signupButton;    //注册按钮
+@property (nonatomic, weak) IBOutlet UIButton *retrieveButton;  //忘记密码
 
 - (RETableViewSection *)addTableViewItems;
 
@@ -60,6 +63,12 @@
     item.textAlignment = NSTextAlignmentCenter;
     [section addItem:item];
     [self.tableViewManager addSection:section];
+    
+    [self.signupButton bk_addEventHandler:^(id sender) {
+        RegisterViewController *viewController = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
+        [weakSelf.navigationController pushViewController:viewController animated:YES];
+    }
+                         forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,9 +81,9 @@
     RETableViewSection *section = [RETableViewSection section];
     
     //用户名
-    RETextItem *tableViewItem = [RETextItem itemWithTitle:@"用户名"
+    RETextItem *tableViewItem = [RETextItem itemWithTitle:@"账号"
                                                     value:nil
-                                              placeholder:@"请输入字母或数字"];
+                                              placeholder:@"请输入用户名或邮箱"];
     tableViewItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     [section addItem:tableViewItem];
     self.usernameItem = tableViewItem;
@@ -82,7 +91,7 @@
     //密码
     tableViewItem = [RETextItem itemWithTitle:@"密码"
                                         value:nil
-                                  placeholder:@"请输入字母或数字"];
+                                  placeholder:@"请输入密码"];
     tableViewItem.secureTextEntry = YES;
     tableViewItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     [section addItem:tableViewItem];
@@ -97,7 +106,7 @@
     NSString *username = self.usernameItem.value;
     NSString *password = self.passwordItem.value;
     if ( ! [username length]) {
-        [SVProgressHUD showErrorWithStatus:@"请输入正确的用户名"];
+        [SVProgressHUD showErrorWithStatus:@"请输入正确的用户名或邮箱"];
         return;
     }
     if ( ! [password length]) {
@@ -114,11 +123,10 @@
 
 - (void)loginSucceeded {
     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)loginFailedWithErrorCode:(NSInteger)errCode errorMessage:(NSString *)errMsg {
-    [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"登录失败\n%@", errMsg]];
+    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"登录失败\n%@", errMsg]];
 }
 
 - (void)loggedOut {

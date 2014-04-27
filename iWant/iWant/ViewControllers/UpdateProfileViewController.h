@@ -14,4 +14,9 @@
 
 @interface UpdateProfileViewController : BaseViewController
 
+@property (nonatomic, assign) BOOL forActivating;       //是否等待激活
+
+@property (nonatomic, copy) NSString *nickname;
+@property (nonatomic, assign) NSInteger birthday;
+
 @end

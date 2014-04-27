@@ -69,18 +69,17 @@
         
         [SVProgressHUD showWithStatus:@"正在修改密码"];
         //调用修改密码接口
-        NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:originPassword, @"oldpassword", freshPassword, @"newpassword", nil];
-        [ApiKit postObjectsAtPath:APIPathUpdatePassword
-                      dataMapping:nil
-                       parameters:param
-                           object:nil
-                               ok:^(id data, NSString *msg) {
-                                   [SVProgressHUD showSuccessWithStatus:@"密码修改成功"];
-                                   [weakSelf.navigationController popViewControllerAnimated:YES];
-                               }
-                            error:^(id data, NSInteger errorCode, NSString *errorMsg) {
-                                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"密码修改失败 %@", errorMsg]];
-                            }];
+        NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:originPassword, @"currentpassword", freshPassword, @"newpassword", nil];
+        [ApiKit getObjectsAtPath:APIPathUpdatePassword
+                     dataMapping:nil
+                      parameters:param
+                              ok:^(id data, NSString *msg) {
+                                  [SVProgressHUD showSuccessWithStatus:@"密码修改成功"];
+                                  [weakSelf.navigationController popViewControllerAnimated:YES];
+                              }
+                           error:^(id data, NSInteger errorCode, NSString *errorMsg) {
+                               [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"密码修改失败 %@", errorMsg]];
+                           }];
     }];
 }
 

@@ -20,6 +20,8 @@
 }
 
 @property (nonatomic, copy) NSString *token;
+@property (nonatomic, assign) BOOL isActivated; //账号是否激活
+@property (nonatomic, copy) NSString *userId;   //账号的唯一id
 
 @property (nonatomic, weak) id<LoginObserver> rootLoginObserver;    //主监听器。不放在监听列表数组里面。登录成功类要先通知给主监听器，失败类后通知给主监听器
 
