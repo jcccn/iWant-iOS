@@ -23,6 +23,9 @@
 
 - (void)searchNearbyNeeds;
 
+- (void)refreshTheList;
+- (void)loadMore;
+
 @end
 
 @implementation NearByNeedsViewController
@@ -41,7 +44,7 @@
     [super viewDidLoad];
     
     self.nearbyNeeds = [NSMutableArray array];
-    //FIXME:
+    //FIXME:测试数据
     MONeeds *testNeeds = [[MONeeds alloc] init];
     testNeeds.title = @"测试需求";
     testNeeds.content = @"测试需求内容";
@@ -69,6 +72,14 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    //配置下拉刷新
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf refreshTheList];
+    }];
+    [self.tableView.pullToRefreshView setTitle:@"下拉刷新" forState:SVPullToRefreshStateStopped];
+    [self.tableView.pullToRefreshView setTitle:@"松开刷新" forState:SVPullToRefreshStateTriggered];
+    [self.tableView.pullToRefreshView setTitle:@"正在刷新" forState:SVPullToRefreshStateLoading];
+    
     [[LBSManager sharedInstance] registerLbsObserver:self];
 }
 
@@ -83,12 +94,18 @@
 }
 
 - (void)searchNearbyNeeds {
+    
+}
+
+- (void)refreshTheList {
     WeakSelf
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@([LBSManager sharedInstance].latitude), @"latitude", @([LBSManager sharedInstance].longitude), @"longtitude", @(0), @"start", @(10), @"count", nil];
     [ApiKit getObjectsAtPath:APIPathFindNeeds
                  dataMapping:[MONeeds commonMapping]
                   parameters:param
                           ok:^(id data, NSString *msg) {
+                              [weakSelf.tableView.pullToRefreshView stopAnimating];
+                              
                               if ([data isKindOfClass:[NSArray class]]) {
                                   //FIXME:数据为空，所以返回数据为0时不刷新
                                   if ( ! [data count]) {
@@ -101,8 +118,12 @@
                               }
                           }
                        error:^(id data, NSInteger errorCode, NSString *errorMsg) {
-                           
+                           [weakSelf.tableView.pullToRefreshView stopAnimating];
                        }];
+}
+
+- (void)loadMore {
+    
 }
 
 #pragma mark - UITableView DataSource & Delegate
