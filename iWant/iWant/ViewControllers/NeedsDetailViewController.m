@@ -39,7 +39,7 @@
     [self.avatarImageView setImageWithURL:[NSURL URLWithString:@"http://mimi.wumii.cn/images/download/app_logo_v2.jpg"]];
     
     self.contentTextView.userInteractionEnabled = NO;
-    self.contentTextView.text = @"测试一下需求的详细内容";
+    self.contentTextView.text = self.needs.content;
 }
 
 - (void)didReceiveMemoryWarning

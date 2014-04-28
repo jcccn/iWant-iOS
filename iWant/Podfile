@@ -22,6 +22,8 @@ pod 'SVPullToRefresh'
 
 pod 'GCPlaceholderTextView'
 
+pod 'PopoverView'
+
 pod 'UMAnalytics', :git => 'https://github.com/jcccn/UMeng-Analytics-iOS.git'
 
 pod 'UMFeedback', :git => 'https://github.com/jcccn/UMeng-Feedback-iOS.git'

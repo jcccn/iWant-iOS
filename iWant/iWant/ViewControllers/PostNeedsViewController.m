@@ -41,10 +41,13 @@
     self.titleTextField.layer.borderColor = [UIColor colorWithWhite:0.95f alpha:1.0f].CGColor;
     self.titleTextField.layer.borderWidth = 1.0f;
     self.titleTextField.layer.cornerRadius = 2.0f;
+    self.titleTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, 20)];
+    self.titleTextField.leftView.backgroundColor = [UIColor clearColor];
+    self.titleTextField.leftViewMode = UITextFieldViewModeAlways;
     self.contentTextView.layer.borderColor = [UIColor colorWithWhite:0.95f alpha:1.0f].CGColor;
     self.contentTextView.layer.borderWidth = 1.0f;
     self.contentTextView.layer.cornerRadius = 2.0f;
-    self.contentTextView.placeholder = @"请输入需求的具体内容";
+    self.contentTextView.placeholder = @"输入详细的需求内容，您更容易找到志同道合的朋友哦";
     self.indateSegmentedControl.selectedSegmentIndex = 1;
     
     WeakSelf
@@ -85,16 +88,16 @@
     NSInteger indate;
     NSInteger selectedIndex = self.indateSegmentedControl.selectedSegmentIndex;
     if (selectedIndex == 0) {
-        indate = 30 * 3600;         //30分钟
+        indate = 30 * 60;       //30分钟
     }
     else if (selectedIndex == 1) {
-        indate = 2 * 60 * 3600;     //2小时
+        indate = 2 * 3600;      //2小时
     }
     else if (selectedIndex == 2) {
-        indate = 12 * 60 * 3600;    //12小时
+        indate = 12 * 3600;     //12小时
     }
     else {
-        indate = 3 * 24 * 60 * 3600;//3天
+        indate = 3 * 24 * 3600; //3天
     }
     
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:title, @"title", content, @"content", @(indate), @"todate", @([LBSManager sharedInstance].latitude), @"latitude", @([LBSManager sharedInstance].longitude), @"longtitude", nil];

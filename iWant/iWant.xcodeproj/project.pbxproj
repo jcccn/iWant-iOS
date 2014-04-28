@@ -41,6 +41,8 @@
 		904DBC0518FEB6B200A523DA /* NearByNeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 904DBC0418FEB6B200A523DA /* NearByNeedsViewController.m */; };
 		904DBC0818FEB6D000A523DA /* MyNeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 904DBC0718FEB6D000A523DA /* MyNeedsViewController.m */; };
 		904DBC0B18FEB6DD00A523DA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 904DBC0A18FEB6DD00A523DA /* SettingsViewController.m */; };
+		906FD76E190E93090092CBC1 /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906FD76D190E93090092CBC1 /* FilterView.m */; };
+		906FD770190E93190092CBC1 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906FD76F190E93190092CBC1 /* FilterView.xib */; };
 		90CCF222190699F300D6064A /* UpdateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF221190699F300D6064A /* UpdateProfileViewController.m */; };
 		90CCF2251906A3AE00D6064A /* UpdatePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF2241906A3AE00D6064A /* UpdatePasswordViewController.m */; };
 		90CCF2281906A7E700D6064A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCF2271906A7E700D6064A /* ProfileViewController.m */; };
@@ -116,6 +118,9 @@
 		904DBC0718FEB6D000A523DA /* MyNeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNeedsViewController.m; sourceTree = "<group>"; };
 		904DBC0918FEB6DD00A523DA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		904DBC0A18FEB6DD00A523DA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		906FD76C190E93090092CBC1 /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
+		906FD76D190E93090092CBC1 /* FilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterView.m; sourceTree = "<group>"; };
+		906FD76F190E93190092CBC1 /* FilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		90CCF220190699F300D6064A /* UpdateProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateProfileViewController.h; sourceTree = "<group>"; };
 		90CCF221190699F300D6064A /* UpdateProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateProfileViewController.m; sourceTree = "<group>"; };
 		90CCF2231906A3AE00D6064A /* UpdatePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePasswordViewController.h; sourceTree = "<group>"; };
@@ -371,6 +376,9 @@
 			isa = PBXGroup;
 			children = (
 				90CCF2331906B50600D6064A /* TableViewCells */,
+				906FD76C190E93090092CBC1 /* FilterView.h */,
+				906FD76D190E93090092CBC1 /* FilterView.m */,
+				906FD76F190E93190092CBC1 /* FilterView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -489,6 +497,7 @@
 				904DBBF218FEB5EB00A523DA /* Icon-60.png in Resources */,
 				904DBBF018FEB5EB00A523DA /* Default.png in Resources */,
 				904DBBFB18FEB5EB00A523DA /* Icon-Small@2x.png in Resources */,
+				906FD770190E93190092CBC1 /* FilterView.xib in Resources */,
 				904DBBF718FEB5EB00A523DA /* Icon-76@2x.png in Resources */,
 				904DBBFC18FEB5EB00A523DA /* Icon-Spotlight-40.png in Resources */,
 				904DBBF318FEB5EB00A523DA /* Icon-60@2x.png in Resources */,
@@ -545,6 +554,7 @@
 			files = (
 				90E188D319018F6400C900DF /* RegisterViewController.m in Sources */,
 				904DBC0818FEB6D000A523DA /* MyNeedsViewController.m in Sources */,
+				906FD76E190E93090092CBC1 /* FilterView.m in Sources */,
 				90E188C4190186D600C900DF /* MOLogin.m in Sources */,
 				90E188D019018CD700C900DF /* MOUserInfo.m in Sources */,
 				90CCF2281906A7E700D6064A /* ProfileViewController.m in Sources */,
@@ -696,6 +706,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -712,6 +723,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
