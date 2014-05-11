@@ -11,6 +11,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "MONeeds.h"
 
 @interface NeedsCell : UITableViewCell
 
@@ -20,5 +21,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *subtitleLabel;
+
+- (void)layoutWithNeeds:(MONeeds *)needs;
 
 @end

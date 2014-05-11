@@ -58,6 +58,7 @@
 		90E188D019018CD700C900DF /* MOUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188CF19018CD700C900DF /* MOUserInfo.m */; };
 		90E188D319018F6400C900DF /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188D219018F6400C900DF /* RegisterViewController.m */; };
 		90E188D619018F7000C900DF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E188D519018F7000C900DF /* LoginViewController.m */; };
+		90F55074191FD22B007AA87C /* RecommendNeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F55073191FD22B007AA87C /* RecommendNeedsViewController.m */; };
 		BB3F3153392F4F87826DF513 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 457860DC5B0F4647ACB41601 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +152,8 @@
 		90E188D219018F6400C900DF /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		90E188D419018F7000C900DF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		90E188D519018F7000C900DF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		90F55072191FD22B007AA87C /* RecommendNeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendNeedsViewController.h; sourceTree = "<group>"; };
+		90F55073191FD22B007AA87C /* RecommendNeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendNeedsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +303,8 @@
 				904DBC0418FEB6B200A523DA /* NearByNeedsViewController.m */,
 				904DBC0618FEB6D000A523DA /* MyNeedsViewController.h */,
 				904DBC0718FEB6D000A523DA /* MyNeedsViewController.m */,
+				90F55072191FD22B007AA87C /* RecommendNeedsViewController.h */,
+				90F55073191FD22B007AA87C /* RecommendNeedsViewController.m */,
 				904DBC0918FEB6DD00A523DA /* SettingsViewController.h */,
 				904DBC0A18FEB6DD00A523DA /* SettingsViewController.m */,
 				90E188D119018F6400C900DF /* RegisterViewController.h */,
@@ -558,6 +563,7 @@
 				90E188C4190186D600C900DF /* MOLogin.m in Sources */,
 				90E188D019018CD700C900DF /* MOUserInfo.m in Sources */,
 				90CCF2281906A7E700D6064A /* ProfileViewController.m in Sources */,
+				90F55074191FD22B007AA87C /* RecommendNeedsViewController.m in Sources */,
 				90CCF22E1906AF9400D6064A /* NeedsDetailViewController.m in Sources */,
 				90CCF2251906A3AE00D6064A /* UpdatePasswordViewController.m in Sources */,
 				90CCF222190699F300D6064A /* UpdateProfileViewController.m in Sources */,
